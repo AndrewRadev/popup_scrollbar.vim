@@ -10,6 +10,28 @@ if !exists('g:popup_scrollbar_auto')
   let g:popup_scrollbar_auto = 0
 endif
 
+if !exists('g:popup_scrollbar_max_size')
+  let g:popup_scrollbar_max_size = 10
+endif
+
+if !exists('g:popup_scrollbar_min_size')
+  let g:popup_scrollbar_min_size = 3
+endif
+
+if !exists('g:popup_scrollbar_shape')
+  let g:popup_scrollbar_shape = {
+        \ 'head': '▲',
+        \ 'body': '█',
+        \ 'tail': '▼',
+        \ }
+endif
+
+if !exists('g:popup_scrollbar_highlight')
+  let g:popup_scrollbar_highlight = 'PopupScrollbar'
+endif
+
+highlight default link PopupScrollbar Normal
+
 let s:enabled = 0
 
 command! PopupScrollbarEnable  call s:Enable()

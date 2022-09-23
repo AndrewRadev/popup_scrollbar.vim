@@ -1,9 +1,4 @@
-" TODO (2022-09-18) Add settings for highlight, bar components etc: https://github.com/Xuyuanp/scrollbar.nvim
-
 function popup_scrollbar#Show() abort
-  let min_size = 3
-  let max_size = 10
-
   let total_lines   = line('$')
   let window_height = winheight(0)
   if total_lines <= window_height
@@ -13,9 +8,12 @@ function popup_scrollbar#Show() abort
   let ratio = (total_lines - window_height) * 1.0
   let current_line = line('w$') - window_height
   let bar_size = float2nr(ceil(window_height * window_height / ratio))
-  let bar_size = s:Clamp(bar_size, min_size, max_size)
+  let bar_size = s:ClampSize(bar_size)
 
-  let content = ['▲'] + split(repeat('█', bar_size - 2), '\zs') + ['▼']
+  let content = [get(g:popup_scrollbar_shape, 'head', '▲')]
+  let body = get(g:popup_scrollbar_shape, 'body', '█')
+  let content += split(repeat(body, bar_size - 2), '\zs')
+  let content += [get(g:popup_scrollbar_shape, 'tail', '▼')]
 
   let [win_row, win_col] = win_screenpos(0)
   let col = win_col + winwidth(0)
@@ -30,6 +28,7 @@ function popup_scrollbar#Show() abort
         \ col: col,
         \ maxwidth: 1,
         \ maxheight: len(content),
+        \ highlight: g:popup_scrollbar_highlight,
         \ })
 endfunction
 
@@ -40,12 +39,12 @@ function! popup_scrollbar#Hide() abort
   endif
 endfunction
 
-function s:Clamp(number, min, max) abort
-  if a:number < a:min
-    return a:min
-  elseif a:number > a:max
-    return a:max
+function s:ClampSize(size) abort
+  if a:size < g:popup_scrollbar_min_size
+    return g:popup_scrollbar_min_size
+  elseif a:size > g:popup_scrollbar_max_size
+    return g:popup_scrollbar_max_size
   else
-    return a:number
+    return a:size
   endif
 endfunction

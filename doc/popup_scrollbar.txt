@@ -51,7 +51,56 @@ TODO
 ==============================================================================
 SETTINGS                                              *popup_scrollbar-settings*
 
-TODO
+                                                        *g:popup_scrollbar_auto*
+>
+    let g:popup_scrollbar_auto = 1
+<
+Default value: 0
+
+If you set this to 1, the plugin will automatically enable scrollbars when
+loaded. You can still disable them with |:PopupScrollbarDisable| and
+|:PopupScrollbarToggle|, of course.
+
+
+                                                    *g:popup_scrollbar_max_size*
+                                                    *g:popup_scrollbar_min_size*
+>
+    let g:popup_scrollbar_max_size = 5
+    let g:popup_scrollbar_min_size = 2
+<
+Default value: 10 and 3
+
+Set the maximum and minimum size for the scrollbar, in lines. The minimum of
+"3" shows the body once, with a head and a tail. You could still set it to 2
+to skip the body, but maybe don't go lower than that.
+
+
+                                                       *g:popup_scrollbar_shape*
+>
+    let g:popup_scrollbar_shape = { 'head': '∧', 'body': '┃', 'tail': '∨' }
+<
+Default value: `{ 'head': '▲', 'body': '█', 'tail': '▼' }`
+
+Set the different components of the scrollbar to whatever character you feel
+like. When the scrollbar is larger than 3 characters, the body is repeated.
+
+
+                                                   *g:popup_scrollbar_highlight*
+>
+    let g:popup_scrollbar_highlight = 'StatusLine'
+<
+Default value: "PopupScrollbar"
+
+The syntax highlight group to use for the scrollbar. By default, it's set to
+the group `PopupScrollbar`, which is linked to `Normal` (see |hl-Normal|).
+
+You can change it to something else with the setting, but you can also
+customize the `PopupScrollbar` group however you like. For example, this gives
+it no background and a dark gray foreground color on color terminals:
+>
+    highlight PopupScrollbar ctermbg=NONE ctermfg=darkgray
+<
+Check out the |:highlight| command for more details.
 
 
 ==============================================================================
