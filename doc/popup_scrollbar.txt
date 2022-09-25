@@ -45,7 +45,23 @@ https://github.com/AndrewRadev/popup_scrollbar.vim/releases.
 ==============================================================================
 USAGE                                                    *popup_scrollbar-usage*
 
-TODO
+These three commands will enable, disable, and toggle the scrollbar:
+
+>
+    :PopupScrollbarEnable
+    :PopupScrollbarDisable
+    :PopupScrollbarToggle
+<
+
+The first one installs autocommands that automatically show the scrollbar when
+switching to a window and update its size and position. Disabling removes
+these autocommands and toggling switches between the two.
+
+If you'd rather just have it enabled automatically, put the following in your
+vimrc:
+>
+    let g:popup_scrollbar_auto = 1
+<
 
 
 ==============================================================================
@@ -106,7 +122,11 @@ Check out the |:highlight| command for more details.
 ==============================================================================
 INTERNALS                                            *popup_scrollbar-internals*
 
-TODO
+The plugin uses |popup_create| to open a popup window on the right-hand side
+of the current window. The "enable" command adds autocommands to automatically
+destroy that popup and show a new one on certain events like resizing a
+window, scrolling, etc.
+
 
 ==============================================================================
 ISSUES                                                  *popup_scrollbar-issues*

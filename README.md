@@ -1,16 +1,42 @@
 [![Build Status](https://circleci.com/gh/AndrewRadev/popup_scrollbar.vim/tree/main.svg?style=shield)](https://circleci.com/gh/AndrewRadev/popup_scrollbar.vim?branch=main)
 
-## Usage (TODO)
+This is a loose port of <https://github.com/Xuyuanp/scrollbar.nvim> for upstream Vim with popup windows instead of floating windows. If you're interested in a Neovim version of the plugin, that's the original source anyway.
 
-This is a loose port of https://github.com/Xuyuanp/scrollbar.nvim for upstream Vim. Will describe in more detail later, basic usage:
+![Demo](http://i.andrewradev.com/cd73f8284361e2e91c44e32571b52848.gif)
 
+## Usage
+
+These three commands will enable, disable, and toggle the scrollbar:
+
+``` vim
+:PopupScrollbarEnable
+:PopupScrollbarDisable
+:PopupScrollbarToggle
 ```
-PopupScrollbarEnable
-PopupScrollbarDisable
-PopupScrollbarToggle
+
+The first one installs autocommands that automatically show the scrollbar when switching to a window and update its size and position. Disabling removes these autocommands and toggling switches between the two.
+
+If you'd rather just have it enabled automatically, put the following in your vimrc:
+
+``` vim
+let g:popup_scrollbar_auto = 1
 ```
 
-![Screenshot](http://i.andrewradev.com/3a180e8a185470d2af60ad73eca9ce37.png)
+## Customizing
+
+If you'd like to customize the size, shape, or color of the scrollbar, check the built-in help docs (`:help popup_scrollbar-settings`) for details. Here's a short summary of the default settings:
+
+``` vim
+let g:popup_scrollbar_max_size = 10
+let g:popup_scrollbar_min_size = 3
+let g:popup_scrollbar_shape = {
+    \ 'head': '▲',
+    \ 'body': '█',
+    \ 'tail': '▼',
+    \ }
+let g:popup_scrollbar_highlight = 'PopupScrollbar'
+highlight default link PopupScrollbar Normal
+```
 
 ## Contributing
 
