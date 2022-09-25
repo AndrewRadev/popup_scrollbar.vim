@@ -1,6 +1,6 @@
 [![Build Status](https://circleci.com/gh/AndrewRadev/popup_scrollbar.vim/tree/main.svg?style=shield)](https://circleci.com/gh/AndrewRadev/popup_scrollbar.vim?branch=main)
 
-This is a loose port of <https://github.com/Xuyuanp/scrollbar.nvim> for upstream Vim with popup windows instead of floating windows. If you're interested in a Neovim version of the plugin, that's the original source anyway.
+This is a loose port of <https://github.com/Xuyuanp/scrollbar.nvim> for upstream Vim with popup windows instead of floating windows. Many thanks to @Xuyuanp for the scrollbar positioning logic. If you're interested in a Neovim version of this plugin, you should just use the original one.
 
 ![Demo](http://i.andrewradev.com/cd73f8284361e2e91c44e32571b52848.gif)
 
