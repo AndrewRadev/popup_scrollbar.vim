@@ -57,34 +57,14 @@ The first one installs autocommands that automatically show the scrollbar when
 switching to a window and update its size and position. Disabling removes
 these autocommands and toggling switches between the two.
 
-If you'd rather just have it enabled automatically, put the following in your
-vimrc:
->
-    let g:popup_scrollbar_auto = 1
-<
-
-
 ==============================================================================
 SETTINGS                                              *popup_scrollbar-settings*
 
-                                                        *g:popup_scrollbar_auto*
->
-    let g:popup_scrollbar_auto = 1
-<
-Default value: 0
-
-If you set this to 1, the plugin will automatically enable scrollbars when
-loaded. You can still disable them with |:PopupScrollbarDisable| and
-|:PopupScrollbarToggle|, of course.
-
-
-                                                    *g:popup_scrollbar_max_size*
                                                     *g:popup_scrollbar_min_size*
 >
-    let g:popup_scrollbar_max_size = 5
     let g:popup_scrollbar_min_size = 2
 <
-Default value: 10 and 3
+Default value: 3
 
 Set the maximum and minimum size for the scrollbar, in lines. The minimum of
 "3" shows the body once, with a head and a tail. You could still set it to 2
