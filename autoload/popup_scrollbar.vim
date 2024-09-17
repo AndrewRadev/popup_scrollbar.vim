@@ -16,7 +16,7 @@ function popup_scrollbar#Show() abort
 
   let [win_row, win_col] = win_screenpos(0)
   let col = win_col + winwidth(0)
-  let ratio = (total_lines - window_height) * 1.0
+  let ratio = str2float(total_lines - window_height)
   let line = win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio)))
 
   if exists('w:scrollbar_popup') && w:scrollbar_popup > 0
