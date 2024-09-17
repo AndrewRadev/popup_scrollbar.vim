@@ -31,7 +31,6 @@ command! PopupScrollbarDisable call s:Disable()
 command! PopupScrollbarToggle  call s:Toggle()
 
 function s:Enable() abort
-    " echom 's:Enable()'
   let s:enabled = 1
 
   augroup PopupScrollbar
@@ -48,7 +47,6 @@ function s:Enable() abort
 endfunction
 
 function s:Disable() abort
-    " echom 's:Disable()'
   let s:enabled = 0
 
   augroup PopupScrollbar
@@ -59,7 +57,6 @@ function s:Disable() abort
 endfunction
 
 function! s:Toggle() abort
-    " echom 's:Toggle(), current=' . s:enabled 
   if s:enabled
     call s:Disable()
   else
