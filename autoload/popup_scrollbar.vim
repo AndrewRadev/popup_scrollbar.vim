@@ -1,9 +1,19 @@
+function! Hide_current_popup()
+  if exists('w:scrollbar_popup')
+    call popup_close(w:scrollbar_popup)
+  endif
+endfunction
+
 function popup_scrollbar#Show() abort
+  if (bufname() =~ 'fugitive')
+      return 
+  endif
   let total_lines   = line('$')
   let window_height = winheight(0)
   let bar_size = max([float2nr(window_height * window_height / total_lines), g:popup_scrollbar_min_size]) 
 
   if bar_size >= window_height
+      call Hide_current_popup()
     return
   endif
 
@@ -19,9 +29,7 @@ function popup_scrollbar#Show() abort
   let ratio = str2float(total_lines - window_height)
   let line = win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio)))
 
-  if exists('w:scrollbar_popup')
-    call popup_close(w:scrollbar_popup)
-  endif
+  call Hide_current_popup()
 
   let w:scrollbar_popup = popup_create(content, #{
         \ line: line,
