@@ -35,9 +35,9 @@ function s:Enable() abort
 
   augroup PopupScrollbar
     autocmd!
-    autocmd WinScrolled,WinResized,VimResized,QuitPre,WinEnter,FocusGained *
+    autocmd WinScrolled,WinResized,VimResized,QuitPre,WinEnter,FocusGained,TextChanged,CursorMoved *
           \ call popup_scrollbar#Show()
-    autocmd BufLeave,BufWinLeave,BufHidden,BufDelete *
+    autocmd BufHidden,BufDelete,WinClosed *
           \ call popup_scrollbar#Hide()
     autocmd BufEnter,BufWinEnter,BufNew,BufAdd,BufCreate *
           \ call popup_scrollbar#Show()
