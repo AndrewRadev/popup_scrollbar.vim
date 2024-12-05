@@ -39,6 +39,7 @@ function! UpdatePopup(winid) abort
         \ maxwidth: 1,
         \ maxheight: len(content),
         \ highlight: g:popup_scrollbar_highlight,
+        \ zindex: 1,
         \ })
 endfunction 
 
