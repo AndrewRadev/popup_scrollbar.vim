@@ -29,7 +29,7 @@ function! UpdatePopup(winid) abort
   let [win_row, win_col] = win_screenpos(a:winid)
   let col = win_col + winwidth(a:winid)
   let ratio = str2float(total_lines - window_height)
-  let line = win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio)))
+  let line = max([ win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio))), 1 ])
 
   call Hide_current_popup(a:winid)
 
