@@ -1,3 +1,13 @@
+## What's new in THIS FORK
+1. No max height of scrollbar. Show it like any other scrollbars: max height is window height.
+2. Correct work of multiple scrollbars in multiple windows. Dont overlap other popups.
+3. Render it at right column of window, not at VertSplit
+4. Make it enabled by default.
+
+API Changes:  
+obsoleted `g:popup_scrollbar_auto`  
+obsoleted `g:popup_scrollbar_max_size`
+
 [![Build Status](https://circleci.com/gh/AndrewRadev/popup_scrollbar.vim/tree/main.svg?style=shield)](https://circleci.com/gh/AndrewRadev/popup_scrollbar.vim?branch=main)
 
 This is a loose port of <https://github.com/Xuyuanp/scrollbar.nvim> for upstream Vim with popup windows instead of floating windows. Many thanks to [@Xuyuanp](https://github.com/Xuyuanp) for the scrollbar positioning logic. If you're interested in a Neovim version of this plugin, you should just use the original one.
