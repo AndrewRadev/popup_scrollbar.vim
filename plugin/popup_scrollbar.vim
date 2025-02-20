@@ -1,3 +1,7 @@
+if !exists('#WinScrolled')
+  finish
+endif
+
 if exists('g:loaded_popup_scrollbar') || &cp
   finish
 endif
