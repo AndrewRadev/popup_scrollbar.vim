@@ -27,7 +27,7 @@ function! UpdatePopup(winid) abort
   let content += [get(g:popup_scrollbar_shape, 'tail', '▼')]
 
   let [win_row, win_col] = win_screenpos(a:winid)
-  let col = win_col + winwidth(a:winid)
+  let col = win_col + winwidth(a:winid) - 1
   let ratio = str2float(total_lines - window_height)
   let line = max([ win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio))), 1 ])
 
