@@ -10,14 +10,6 @@ let g:loaded_popup_scrollbar = '0.0.1' " version number
 let s:keepcpo = &cpo
 set cpo&vim
 
-if !exists('g:popup_scrollbar_auto')
-  let g:popup_scrollbar_auto = 0
-endif
-
-if !exists('g:popup_scrollbar_max_size')
-  let g:popup_scrollbar_max_size = 10
-endif
-
 if !exists('g:popup_scrollbar_min_size')
   let g:popup_scrollbar_min_size = 3
 endif
@@ -47,10 +39,12 @@ function s:Enable() abort
 
   augroup PopupScrollbar
     autocmd!
-    autocmd WinScrolled,VimResized,QuitPre,WinEnter,FocusGained *
-          \ call popup_scrollbar#Show()
-    autocmd WinLeave,BufLeave,BufWinLeave,FocusLost *
+    autocmd WinScrolled,WinResized,VimResized,WinEnter,TextChanged,CursorMoved *
+         \ call popup_scrollbar#Show()
+    autocmd BufHidden,BufDelete,WinClosed *
           \ call popup_scrollbar#Hide()
+    autocmd BufEnter,BufNew,BufAdd,BufCreate *
+          \ call popup_scrollbar#Show()
   augroup END
 
   call popup_scrollbar#Show()
@@ -74,9 +68,7 @@ function! s:Toggle() abort
   endif
 endfunction
 
-if g:popup_scrollbar_auto
-  call s:Enable()
-endif
+call s:Enable()
 
 let &cpo = s:keepcpo
 unlet s:keepcpo

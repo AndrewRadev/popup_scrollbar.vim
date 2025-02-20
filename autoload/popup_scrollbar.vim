@@ -1,50 +1,59 @@
-function popup_scrollbar#Show() abort
-  let total_lines   = line('$')
-  let window_height = winheight(0)
-  if total_lines <= window_height
+let s:visiblePopups = {}
+
+function! Hide_current_popup(winid)
+  if has_key(s:visiblePopups, a:winid)
+    call popup_close(s:visiblePopups[a:winid])
+  endif
+endfunction
+
+function! UpdatePopup(winid) abort
+  call Hide_current_popup(a:winid)
+  if (bufname() =~ 'fugitive')
+    return 
+  endif
+  let total_lines   = line('$', a:winid)
+  let window_height = winheight(a:winid)
+  let bar_size = max([float2nr(window_height * window_height / total_lines), g:popup_scrollbar_min_size]) 
+
+  if bar_size >= window_height
     return
   endif
 
-  let ratio = (total_lines - window_height) * 1.0
-  let current_line = line('w$') - window_height
-  let bar_size = float2nr(ceil(window_height * window_height / ratio))
-  let bar_size = s:ClampSize(bar_size)
+  let current_line = line('w$', a:winid) - window_height
 
   let content = [get(g:popup_scrollbar_shape, 'head', '▲')]
   let body = get(g:popup_scrollbar_shape, 'body', '█')
   let content += split(repeat(body, bar_size - 2), '\zs')
   let content += [get(g:popup_scrollbar_shape, 'tail', '▼')]
 
-  let [win_row, win_col] = win_screenpos(0)
-  let col = win_col + winwidth(0)
-  let line = 1 + win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio)))
+  let [win_row, win_col] = win_screenpos(a:winid)
+  let col = win_col + winwidth(a:winid) - 1
+  let ratio = str2float(total_lines - window_height)
+  let line = max([ win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio))), 1 ])
 
-  if exists('b:scrollbar_popup') && b:scrollbar_popup > 0
-    call popup_close(b:scrollbar_popup)
-  endif
+  call Hide_current_popup(a:winid)
 
-  let b:scrollbar_popup = popup_create(content, #{
+  let s:visiblePopups[a:winid] = popup_create(content, #{
         \ line: line,
         \ col: col,
         \ maxwidth: 1,
         \ maxheight: len(content),
         \ highlight: g:popup_scrollbar_highlight,
+        \ zindex: 1,
         \ })
+endfunction 
+
+function! popup_scrollbar#Show() abort
+    for winid in s:visiblePopups->keys()
+        call UpdatePopup(winid)
+    endfor
+    call UpdatePopup(win_getid())
 endfunction
 
 function! popup_scrollbar#Hide() abort
-  if exists('b:scrollbar_popup') && b:scrollbar_popup > 0
-    call popup_close(b:scrollbar_popup)
-    let b:scrollbar_popup = -1
-  endif
-endfunction
-
-function s:ClampSize(size) abort
-  if a:size < g:popup_scrollbar_min_size
-    return g:popup_scrollbar_min_size
-  elseif a:size > g:popup_scrollbar_max_size
-    return g:popup_scrollbar_max_size
-  else
-    return a:size
+  let winid = win_getid()
+  call Hide_current_popup(winid)
+  if has_key(s:visiblePopups, winid)
+    call remove(s:visiblePopups, winid)
   endif
 endfunction
