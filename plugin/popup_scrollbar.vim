@@ -1,4 +1,4 @@
-if !exists('#WinScrolled')
+if !exists('##WinScrolled')
   finish
 endif
 
