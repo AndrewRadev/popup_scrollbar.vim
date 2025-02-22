@@ -17,7 +17,7 @@ function popup_scrollbar#Show() abort
 
   let [win_row, win_col] = win_screenpos(0)
   let col = win_col + winwidth(0)
-  let line = 1 + win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio)))
+  let line = win_row + float2nr(floor((window_height - bar_size) * (current_line / ratio)))
 
   if exists('b:scrollbar_popup') && b:scrollbar_popup > 0
     call popup_close(b:scrollbar_popup)
@@ -29,6 +29,7 @@ function popup_scrollbar#Show() abort
         \ maxwidth: 1,
         \ maxheight: len(content),
         \ highlight: g:popup_scrollbar_highlight,
+        \ zindex: 1,
         \ })
 endfunction
 
