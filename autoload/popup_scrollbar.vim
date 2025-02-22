@@ -24,11 +24,11 @@ function! popup_scrollbar#Show() abort
   let popup_line = win_row + float2nr(floor(popup_line_max * progress))
   let popup_col  = win_col + winwidth(0)
 
-  if exists('b:scrollbar_popup') && b:scrollbar_popup > 0
-    call popup_close(b:scrollbar_popup)
+  if exists('w:scrollbar_popup') && w:scrollbar_popup > 0
+    call popup_close(w:scrollbar_popup)
   endif
 
-  let b:scrollbar_popup = popup_create(content, #{
+  let w:scrollbar_popup = popup_create(content, #{
         \ line: popup_line,
         \ col: popup_col,
         \ maxwidth: 1,
@@ -39,9 +39,9 @@ function! popup_scrollbar#Show() abort
 endfunction
 
 function! popup_scrollbar#Hide() abort
-  if exists('b:scrollbar_popup') && b:scrollbar_popup > 0
-    call popup_close(b:scrollbar_popup)
-    let b:scrollbar_popup = -1
+  if exists('w:scrollbar_popup') && w:scrollbar_popup > 0
+    call popup_close(w:scrollbar_popup)
+    let w:scrollbar_popup = -1
   endif
 endfunction
 
