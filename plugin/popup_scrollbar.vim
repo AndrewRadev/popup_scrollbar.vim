@@ -15,7 +15,7 @@ if !exists('g:popup_scrollbar_auto')
 endif
 
 if !exists('g:popup_scrollbar_max_size')
-  let g:popup_scrollbar_max_size = 10
+  let g:popup_scrollbar_max_size = 0
 endif
 
 if !exists('g:popup_scrollbar_min_size')

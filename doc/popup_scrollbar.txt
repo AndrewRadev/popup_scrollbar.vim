@@ -81,14 +81,18 @@ loaded. You can still disable them with |:PopupScrollbarDisable| and
                                                     *g:popup_scrollbar_max_size*
                                                     *g:popup_scrollbar_min_size*
 >
-    let g:popup_scrollbar_max_size = 5
+    let g:popup_scrollbar_max_size = 10
     let g:popup_scrollbar_min_size = 2
 <
-Default value: 10 and 3
+Default value: 0 and 3
 
 Set the maximum and minimum size for the scrollbar, in lines. The minimum of
 "3" shows the body once, with a head and a tail. You could still set it to 2
 to skip the body, but maybe don't go lower than that.
+
+If the max size is set to the default of 0, the scrollbar can take up the
+entire vertical height of the window. If a large bar for a short file is
+distracting for you (it is for me!), you can pick a maximum size.
 
 
                                                        *g:popup_scrollbar_shape*
