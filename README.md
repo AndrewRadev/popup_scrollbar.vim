@@ -40,4 +40,4 @@ highlight default link PopupScrollbar Normal
 
 ## Contributing
 
-Pull requests are welcome, but take a look at [CONTRIBUTING.md](https://github.com/AndrewRadev/popup_scrollbar.vim/blob/main/CONTRIBUTING.md) first for some guidelines. Be sure to abide by the [CODE_OF_CONDUCT.md](https://github.com/AndrewRadev/popup_scrollbar.vim/blob/master/CODE_OF_CONDUCT.md) as well.
+Pull requests are welcome, as long as they **did not involve any LLM usage**. Take a look at [CONTRIBUTING.md](https://github.com/AndrewRadev/popup_scrollbar.vim/blob/main/CONTRIBUTING.md) first for some guidelines. Be sure to abide by the [CODE_OF_CONDUCT.md](https://github.com/AndrewRadev/popup_scrollbar.vim/blob/master/CODE_OF_CONDUCT.md) as well.
